@@ -22,7 +22,7 @@ app.use('*', async (req, res) => {
       fs.readFileSync('index.html', 'utf-8')
     );
     const { render } = await vite.ssrLoadModule('/src/server.jsx');
-    const { getServerData } = await vite.ssrLoadModule('/src/function.js');
+    const { getServerData } = await vite.ssrLoadModule('/src/api.js');
     const data = await getServerData();
     const script = `<script>window.__data__=${JSON.stringify(data)}</script>`;
     const html = template.replace(`<!--outlet-->`, `${render(data)} ${script}`);
